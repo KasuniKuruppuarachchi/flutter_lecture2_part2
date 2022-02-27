@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_lectur2_part2/components/list_item.dart';
 import 'package:flutter_lectur2_part2/screens/about.dart';
 import 'package:flutter_lectur2_part2/screens/shop.dart';
+import 'package:flutter_lectur2_part2/shop_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../components/layout.dart';
 
 class Home extends StatefulWidget {
 
-  static String routName = "/";
+  static String routName = "/home";
   const Home({Key? key}) : super(key: key);
 
   @override
@@ -26,10 +28,15 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Layout(
-
-      title: 'Home',
-
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Home"),
+        actions: [
+          Chip(
+            label: Text("${Provider.of<ShopManager>(context).qty}"),
+          )
+        ],
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -37,8 +44,9 @@ class _HomeState extends State<Home> {
           onTap: _onIncrement,
           child: Text("Count is $count"),
         ),
-          //const ListItem(content: "Content 1"),
-          //const ListItem(content: "Content 2"),
+          Text("Cart Qty is : ${Provider.of<ShopManager>(context).qty}"),
+          const ListItem(content: "Content 1"),
+          const ListItem(content: "Content 2"),
           ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pushNamed(About.routName);
@@ -60,3 +68,8 @@ class _HomeState extends State<Home> {
     );
   }
 }
+
+// Provider
+//It can actually handle a state, whatever inside an component
+// So might you have cases for share between multiple components, in that case you will be needed to have either
+// inherited widgets or inherited notifiers. So for that we use a library called "Provider" to remove the complexity.

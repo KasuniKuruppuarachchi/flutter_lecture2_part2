@@ -17,11 +17,14 @@ class ListItem extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Row(
         children: [
-          Icon(Icons.verified_user, color: Theme.of(context).primaryColor,),
+          Icon(Icons.verified_user,
+            color: Theme.of(context).primaryColor,),
           const SizedBox(
             width: 10,
           ),
-          Text(content, style: TextStyle(color: ColorManager.of(context).primaryColor),)
+          Text(
+            content,
+            style: TextStyle(color: Theme.of(context).primaryColor),)
         ],
       ),
     );

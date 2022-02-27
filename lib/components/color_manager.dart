@@ -11,8 +11,8 @@ class ColorManager extends InheritedWidget{
   kind of state*/
   /* If you need to mark a state change then this is the method that needs to override*/
   @override
-  bool updateShouldNotify(covariant InheritedWidget oldWidget) {
-    return true;
+  bool updateShouldNotify(ColorManager oldWidget) {
+    return oldWidget.primaryColor != primaryColor;
   }
 
   static ColorManager of(BuildContext context){
